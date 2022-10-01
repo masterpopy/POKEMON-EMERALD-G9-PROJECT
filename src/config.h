@@ -60,4 +60,10 @@
 
 #define EM_VERSION EM
 
+#define EVO_MEGA_EVOLUTION                0xFB // Not an actual evolution, used to temporarily mega evolve in battle.
+#define EVO_MOVE_MEGA_EVOLUTION           0xFC // Mega Evolution that checks for a move instead of held item.
+#define EVO_PRIMAL_REVERSION              0xFD // Not an actual evolution, used to undergo primal reversion in battle.
+#define EVO_UTRL_BURST                    0xFA
+#define EVO_REVERT_MEGA                   0xFF
+
 #endif /* CONFIG_H */

@@ -192,7 +192,7 @@ void revert_mega_to_normalform_new(u8 opponent_side)
 			species_to_revert = ((u16*) sav1->balls_pocket)[opponent_side];
 		for (u8 j = 0; j < NUM_OF_EVOS; j++)
 		{
-			if (evos[j].method == 0xFF)
+			if (evos[j].method == EVO_REVERT_MEGA)
 			{
 				species_to_revert = evos[j].poke;
 				break;
@@ -204,7 +204,6 @@ void revert_mega_to_normalform_new(u8 opponent_side)
 			calculate_stats_pokekmon(poke_address);
 		}
 	}
-	return;
 }
 
 //Start Z

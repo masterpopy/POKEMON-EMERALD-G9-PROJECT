@@ -17,7 +17,7 @@ u8 get_reversion_type(u8 bank, u16 target_species)
 	const struct evolution_sub* evos = GET_EVO_TABLE(species);
 	for (u8 i = 0; i < NUM_OF_EVOS; i++)
 	{
-		if (evos[i].method == 0xFD && evos[i].poke == target_species)
+		if (evos[i].method == EVO_PRIMAL_REVERSION && evos[i].poke == target_species)
 		{
 			reversion_type = evos[i].paramter;
 			break;
@@ -46,7 +46,7 @@ void set_mega_attr(struct battle_participant* bank_struct, u8 bank, struct pokem
 bool handle_primal_reversion(u8 bank)
 {
 	bool perform_reversion = false;
-	u16 primal_species = get_mega_species(bank, 0xFD);
+	u16 primal_species = get_mega_species(bank, EVO_PRIMAL_REVERSION);
 
 	if (primal_species)
 	{

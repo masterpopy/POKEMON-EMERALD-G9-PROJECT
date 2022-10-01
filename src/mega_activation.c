@@ -91,7 +91,7 @@ u16 get_mega_species(u8 bank, u8 chosen_method)
 		{
 			switch (method)
 			{
-				case 0xFB: // regular mega
+				case EVO_MEGA_EVOLUTION: // regular mega
 				{
 					if (item_effect == ITEM_EFFECT_MEGASTONE)
 					{
@@ -103,7 +103,7 @@ u16 get_mega_species(u8 bank, u8 chosen_method)
 					}
 				}
 					break;
-				case 0xFD: //primal
+				case EVO_PRIMAL_REVERSION: //primal
 				{
 					if (item_effect == ITEM_EFFECT_PRIMALORB)
 					{
@@ -111,7 +111,7 @@ u16 get_mega_species(u8 bank, u8 chosen_method)
 					}
 				}
 					break;
-				case 0xFC: //fervent wish mega
+				case EVO_MOVE_MEGA_EVOLUTION: //fervent wish mega
 				{
 					//JeremyZ, cannot mega if holding z-crystal
 					if (item_effect == ITEM_EFFECT_ZCRYSTAL)
@@ -131,7 +131,7 @@ u16 get_mega_species(u8 bank, u8 chosen_method)
 					}
 				}
 					break;
-				case 0xFA: //Ultra Burst
+				case EVO_UTRL_BURST: //Ultra Burst
 					// if(item_effect == ITEM_EFFECT_ZCRYSTAL)
 					if (battle_participants[bank].held_item == 0x283) //JeremyZ
 						goto SET_SPECIES;
@@ -161,19 +161,19 @@ u8 can_set_mega_trigger(u8 bank) //JeremyZ
 	}
 	if (res && checkitem(KEYSTONE, 1))
 	{
-		if (get_mega_species(bank, 0xFB))
+		if (get_mega_species(bank, EVO_MEGA_EVOLUTION))
 		{
 			//normal
 			mega_mode = 3;
 		}
-		else if (get_mega_species(bank, 0xFC))
+		else if (get_mega_species(bank, EVO_MOVE_MEGA_EVOLUTION))
 		{
 			//fervent wish mega
 			mega_mode = 3; //2;
 		}
 	}
 	//Ultra Burst
-	if (mega_mode == 0 && get_mega_species(bank, 0xFA))
+	if (mega_mode == 0 && get_mega_species(bank, EVO_UTRL_BURST))
 		mega_mode = 2;
 	//Z-Move
 	else if (mega_mode == 0 && can_set_z_trigger(bank))
