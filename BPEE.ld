@@ -342,7 +342,7 @@ prepare_party_mail_to_give = 0x080D4420|1;
 specific_pokerus_check = 0x0806DDE4|1;
 
 text_yesno_battle = 0x085CCABB;
-text_Wild_ = 0x085CBD82;
+text_Wild_ = 0x089C1190;
 text_Foe_ = 0x085CBD89;
 text_Foe = 0x085CBD91;
 text_Ally = 0x085CBD95;
