@@ -677,48 +677,7 @@ struct pokemon
 	char markings;            // only the lowest 4 bits are used
 	u16 checksum;
 	u16 padding_maybe;        //get_attr 6a674
-	u16 spieces;
-	u16 item;
-	u32 exp;
-	char pointup;
-	//char	PointUp1 : 2;	// @0x42,
-	//char	PointUp2 : 2;	// @0x44,
-	//char	PointUp3 : 2;	// @0x46,
-	char bIntimate : 8;
-	u16 unk0;
-	u16 moves[4];        // ID of the Skill
-	char movePP[4];        // Skill Points
-	char evs_hp;
-	char evs_atk;
-	char evs_def;
-	char evs_spd;
-	char evs_spatk;
-	char evs_spdef;
-	char beauty[0x06];        // 帅气 美丽 可爱 聪明 强壮 光滑
-	u32 virus : 4;        // @0x00, if any bit is set, ポケルスがかかる
-	u32 blackpoint : 4;        // @0x04, if any bit is set, 黑点
-	u32 catchplace : 8;
-	u32 catchlevel : 7;
-	u32 gameversion : 4;    // @0x17, game version (sapphire=1, ruby=2, emerald=3, fire=4, leaf=5)
-	u32 ball : 4;        // @0x1B, Poke-Ball type (Write twice, why?)
-	u32 unk1 : 1;            // @0x1F, 0
-	u32 iv_hp : 5;
-	u32 iv_atk : 5;
-	u32 iv_def : 5;
-	u32 iv_spd : 5;
-	u32 iv_spatk : 5;
-	u32 iv_spdef : 5;
-	u32 isEgg : 1;
-	u32 ability : 1;
-	u32 ribbon0 : 3;
-	u32 ribbon1 : 3;
-	u32 ribbon2 : 3;
-	u32 ribbon3 : 3;
-	u32 ribbon4 : 3;
-	u32 ribbon5 : 12;
-	u32 unk2 : 4;
-	u32 obedience : 1;
-	// only for active (in group) pokemons
+	u8 data[48];
 	char status;        // bit0-2:异常状态,
 	char unkonw[3];
 	char level;
