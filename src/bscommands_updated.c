@@ -952,7 +952,7 @@ bool move_effect2_setter(void)
 	return 1;
 }
 
-void clear_twoturn(u8 bank)
+void clear_twoturn_status(u8 bank)
 {
 	status3[bank].on_air = 0;
 	status3[bank].underwater = 0;
@@ -1161,7 +1161,7 @@ void atk49_move_end_turn(void)
 					active_bank = bank_attacker;
 					prepare_pokemon_battle_sprite_manipulation_buffer(0, 0);
 					mark_buffer_bank_for_execution(active_bank);
-					clear_twoturn(bank_attacker);
+					clear_twoturn_status(bank_attacker);
 					special_statuses[bank_attacker].restored_bank_sprite = 1;
 				}
 				INC_END_EVENTS
@@ -1173,7 +1173,7 @@ void atk49_move_end_turn(void)
 					active_bank = bank_target;
 					prepare_pokemon_battle_sprite_manipulation_buffer(0, 0);
 					mark_buffer_bank_for_execution(active_bank);
-					clear_twoturn(bank_target);
+					clear_twoturn_status(bank_target);
 				}
 				INC_END_EVENTS
 			case 15: //item move end turn
@@ -3190,10 +3190,10 @@ void atkC5_hide_pre_attack(void)
 
 void atkC6_unhide_post_attack(void)
 {
-	clear_twoturn(bank_attacker);
+	clear_twoturn_status(bank_attacker);
 	if (current_move == MOVE_SKY_DROP)
 	{
-		clear_twoturn(bank_target);
+		clear_twoturn_status(bank_target);
 		u8 objID = objID_pbs_moveanimations[animation_bank_target];
 		struct object* poke_obj = &objects[objID];
 		poke_obj->pos1.x = poke_obj->private[7];

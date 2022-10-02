@@ -139,7 +139,7 @@ void set_throatchop(void)
 }
 
 //Speed Swap
-void speed_swap(void)
+void various_speed_swap(void)
 {
 	u16 speed_temp = battle_participants[bank_attacker].spd;
 	battle_participants[bank_attacker].spd = battle_participants[bank_target].spd;

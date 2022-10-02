@@ -1,0 +1,7 @@
+.gba
+.open "test.gba", 0x8000000
+.include "offsets.ini"
+
+
+
+.close

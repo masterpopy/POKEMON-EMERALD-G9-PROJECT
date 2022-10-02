@@ -32,7 +32,7 @@ u8 cant_become_confused(u8 bank);
 u8 get_item_effect(u8 bank, bool check_negating_effects);
 bool has_ability_effect(u8 bank, u8 mold_breaker);
 bool weather_abilities_effect(void);
-void clear_twoturn(u8 bank);
+void clear_twoturn_status(u8 bank);
 u8  get_trainer_opponent_A_class();
 bool not_impostered(u8 bank);
 struct pokemon* get_bank_poke_ptr(u8 bank); //JeremyZ
@@ -140,7 +140,7 @@ void reset_multiple_turn_effects(u8 bank)
     battle_participants[bank].status2.locked_and_confuse = 0;
     battle_participants[bank].status2.multiple_turn_move = 0;
     battle_participants[bank].status2.uproar = 0;
-    clear_twoturn(bank);
+	clear_twoturn_status(bank);
     disable_structs[bank].fury_cutter_timer = 0;
     disable_structs[bank].rollout_timer = 0;
 }

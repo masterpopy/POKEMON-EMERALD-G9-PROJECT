@@ -266,6 +266,6 @@ with open(ROM_NAME, 'rb+') as rom:
     offset_file = open("offsets.ini", 'w')
     for key in sorted(table.keys()):
         fstr = ('{:' + str(width) + '} {:08X}')
-        offset_file.write(fstr.format(key + ':', table[key] + 0x08000000) + '\n')
+        offset_file.write(fstr.format(key + ' equ ', table[key] + 0x08000000) + '\n')
 
     offset_file.close()

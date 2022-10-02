@@ -1064,7 +1064,7 @@ const u16 forbidenabilitiestable3[] = {ABILITY_WONDER_GUARD, ABILITY_STANCE_CHAN
                                     ABILITY_ZEN_MODE, ABILITY_POWER_OF_ALCHEMY, ABILITY_RECEIVER, ABILITY_DISGUISE, ABILITY_SCHOOLING, ABILITY_SHIELDS_DOWN, ABILITY_BATTLE_BOND, ABILITY_RKS_SYSTEM, ABILITY_POWER_CONSTRUCT, ABILITY_NEUTRALIZING_GAS,ABILITY_GULP_MISSILE, ABILITY_HUNGER_SWITCH, ABILITY_AS_ONE_ICE_RIDER, ABILITY_AS_ONE_SHADOW_RIDER, 0xFF};//cannot be copied/traced
 const u16 forbidenabilitiestable4[] = {ABILITY_MULTITYPE, ABILITY_TRUANT, ABILITY_STANCE_CHANGE, ABILITY_SCHOOLING, ABILITY_COMATOSE, ABILITY_SHIELDS_DOWN, ABILITY_DISGUISE, ABILITY_BATTLE_BOND, ABILITY_RKS_SYSTEM, ABILITY_POWER_CONSTRUCT, ABILITY_GULP_MISSILE, ABILITY_AS_ONE_ICE_RIDER, ABILITY_AS_ONE_SHADOW_RIDER, 0xFF};//cannot be cover
 
-void ability_change(void)
+void various_ability_change(void)
 { //table goes Swapping/attackers change/targets change
 	u8 check = read_byte(battlescripts_curr_instruction);
     u8 fail = 0;
@@ -1300,7 +1300,7 @@ void countercalc(void)
     }
 }
 
-void gastroacid(void)
+void various_gastroacid(void)
 {
     u16 targets_ability = gBankAbilities[bank_target];
     if (findability_in_table(targets_ability, forbidenabilitiestable2))
@@ -1332,7 +1332,7 @@ void setembargo(void)
     }
 }
 
-void naturalgift(void)
+void various_naturalgift(void)
 {
     u16 item = battle_participants[bank_attacker].held_item;
     u8 effect = 1;
@@ -1549,7 +1549,7 @@ void jump_to_move_bs(void)
     bank_target = get_target_of_move(move, 0, 1);
 }
 
-void setluckychant(void)
+void various_setluckychant(void)
 {
     u8 side = get_bank_side(bank_attacker);
     if (new_battlestruct->side_affecting[side].lucky_chant)
@@ -1562,7 +1562,7 @@ void setluckychant(void)
     }
 }
 
-void settailwind(void)
+void various_settailwind(void)
 {
     u8 side = get_bank_side(bank_attacker);
     if (new_battlestruct->side_affecting[side].tailwind)
@@ -1896,7 +1896,7 @@ void psychosplits()
     }
 }
 
-void stockpile_record(void)
+void various_stockpile_record(void)
 {
     struct battle_participant* attacker_stats = &battle_participants[bank_attacker];
     u8* stockpile_def = &bank_partner_atk;
@@ -3479,7 +3479,7 @@ void custom_setter(void){
 
 void set_spotlight(void); //Spotlight, JeremyZ
 void set_throatchop(void); //Throat Chop, JeremyZ
-void speed_swap(void); //Speed Swap, JeremyZ
+void various_speed_swap(void); //Speed Swap, JeremyZ
 void jumpifuserheadblown(void); //Mind Blown, JeremyZ
 void print_start_z(void); //Start Z, JeremyZ
 void jumpifnostockpile(void); //Spit Up, JeremyZ
@@ -3497,13 +3497,13 @@ const command callasm_table[] = {&ability_switchin_effect /*0*/, &jump_if_forces
 &jumpifcantpoison /*33*/, &jumpifcantparalyze /*34*/, &jumpifcantburn /*35*/, &statustoeffect /*36*/, &half_hp_damage /*37*/,
 &jumpifonlyonepokemon /*38*/, &setlunardanceeffect /*39*/, &weatherhpheal /*40*/, &checkifcantransfercondition /*41*/, &choosestatusinflictiontext /*42*/,
 &roostactivation /*43*/, &gravitysetter /*44*/, &gravity_ender /*45*/, &setidentifierbit /*46*/, &breakprotection /*47*/,
-&suckerpunchchecker /*48*/, &oppositegenderscheck /*49*/, &setthirdtype /*50*/, &ability_change /*51*/, &roomsetter /*52*/, &countercalc /*53*/,
-&gastroacid /*54*/, &setembargo /*55*/, &naturalgift /*56*/, &afteryou_check /*57*/, &powder_setter /*58*/, &jumpifnoally /*59*/,
+&suckerpunchchecker /*48*/, &oppositegenderscheck /*49*/, &setthirdtype /*50*/, &various_ability_change /*51*/, &roomsetter /*52*/, &countercalc /*53*/,
+&various_gastroacid /*54*/, &setembargo /*55*/, &various_naturalgift /*56*/, &afteryou_check /*57*/, &powder_setter /*58*/, &jumpifnoally /*59*/,
 &electrify /*60*/, &set_entry_hazards /*61*/, &jumpifnotdoublebattle /*62*/, &jumpifattackerandtargetdontsharetypes /*63*/,
 &try_autotonomize /*64*/, &set_iondeluge /*65*/, &reflecttypes /*66*/, &sethealblock /*67*/, &traptarget /*68*/, &mefirst_check /*69*/,
-&jump_to_move_bs /*70*/, &setluckychant /*71*/, &settailwind /*72*/, &cansetnightmare /*73*/, &bellydrum /*74*/, &setmagnetrise /*75*/,
+&jump_to_move_bs /*70*/, &various_setluckychant /*71*/, &various_settailwind /*72*/, &cansetnightmare /*73*/, &bellydrum /*74*/, &setmagnetrise /*75*/,
 &settelekinesis /*76*/, &setpowertrick /*77*/, &make_pokemon_one_type /*78*/, &defog_effect /*79*/, &copycat_move /*80*/,
-&psycho_swaps /*81*/, &psychosplits /*82*/, &stockpile_record /*83*/, &twoturn_moves /*84*/, &powerherb_check /*85*/, &set_terrain /*86*/,
+&psycho_swaps /*81*/, &psychosplits /*82*/, &various_stockpile_record /*83*/, &twoturn_moves /*84*/, &powerherb_check /*85*/, &set_terrain /*86*/,
 &setaquaring /*87*/, &get_trainer_name_for_mega /*88*/, &mega_evo_updatehpbar /*89*/, &mega_evo_pursuit_check /*90*/,
 &jumpifuserhasnoHP /*91*/, &quash_setter /*92*/, &beatup_getloopcounter /*93*/, &canuse_allyswitch /*94*/, &allyswitch_dataswitch /*95*/,
 &can_magneticflux_work /*96*/, &magnetic_flux_effect /*97*/, &canuse_flowershield /*98*/, &flowershield_effect /*99*/, &canuselastresort /*100*/,
@@ -3520,7 +3520,7 @@ const command callasm_table[] = {&ability_switchin_effect /*0*/, &jump_if_forces
 &triattackrand /*151*/, &statustoeffect2 /*152*/, &multiplestats_prepare_custom /*153*/, &do_multiple_stats_custom /*154*/, &jumpifnotarg1type /*155*/,
 &set_stats_to_play /*156*/, &receiver_effect /*157*/, &bugbite_get_berry_effect /*158*/, &prepare_switchbank_data /*159*/, &ash_greninja_check /*160*/,
 &zygarde_message_based_on_side/*161*/, &hp_stat_form_change /*162*/, &revert_mega /*163*/, &instruct_canceler /*164*/, &set_instruct /*165*/,
-&apply_zmove_changes/*166*/, &set_spotlight/*167*/, &set_throatchop/*168*/, &speed_swap/*169*/, &jumpifuserheadblown/*170*/,
+&apply_zmove_changes/*166*/, &set_spotlight/*167*/, &set_throatchop/*168*/, &various_speed_swap/*169*/, &jumpifuserheadblown/*170*/,
 &print_start_z/*171*/, &jumpifnostockpile/*172*/, &calc_recoil_dmg2/*173*/, &clanging_scales_stat/*174*/, &clear_screen/*175*/ ,&trapattacker/*176*/,&jumpifnomoveforspecies/*177*/,&set_perish_body/*178*/,&check_berry_can_be_eaten/*179*/, &check_and_set_new_battlestruct_flag/*180*/,&dragon_darts_asm/*181*/,&check_all_berry_can_be_eaten/*182*/,&court_change_asm/*183*/,&checkfaintpokemon/*184*/,&check_target_item/*185*/,&check_corrosive_gas/*186*/,&try_jungle_healing/*187*/,&reduce_pp_by_arg1/*188*/,&custom_setter/*189*/};
 
 void atk83_callasm(void)
