@@ -844,6 +844,7 @@ struct poke_basestats
     u8 flags;
     u8 bodyColor : 7;
 	u8 noFlip : 1;
+	//0x18
     struct {
 			 u32 a1:10;
 			 u32 a2:10;

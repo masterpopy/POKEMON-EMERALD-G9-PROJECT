@@ -115,3 +115,19 @@ void BtlController_EmitPrintSelectionString(u8 bufferId, u16 stringID)
     }
     battle_buffer_reset(bufferId, bbp_for_banks, sizeof(struct string_inf) + 4);
 }
+
+u8 _GetRandomAbilityBit(u16 species, u32 randomValue)
+{
+	if (gBaseStats[species].abilities.a3) {
+		return randomValue % 3;
+	}
+	if (gBaseStats[species].abilities.a3) {
+		return randomValue % 2;
+	}
+	return 0;
+}
+
+u16 _GetRandomAbility(u16 species, u32 randomValue)
+{
+	return GetAbilityBySpecies(species, _GetRandomAbilityBit(species, randomValue));
+}

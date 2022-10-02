@@ -2,6 +2,96 @@
 .open "test.gba", 0x8000000
 .include "offsets.ini"
 
+GetRandomAbilityBit equ 0x806B6A0
+Random equ 0x0806f5cc
+GetAbilityBySpeciesOld equ 0x0806B694
 
+.org GetRandomAbilityBit
+    ldr r2, =(_GetRandomAbilityBit+1)
+    bx r2
+GetRandomAbility:
+    ldr r2, =(_GetRandomAbility+1)
+    bx r2
+.pool
 
+//更改精灵随机获得的特性
+.org 0x8067e50
+    bl Random
+    mov r1, r0
+    mov r3, sp
+    ldrh r0, [r3, #0xe]
+    bl GetRandomAbilityBit
+    b 0x8067e6a
+
+//FindMonThatAbsorbsOpponentsMove
+.org 0x08063064
+    mov r1, r0
+    mov r0, r4
+    bl GetAbilityBySpeciesOld
+    b 0x8063092
+
+//FindMonWithFlagsAndSuperEffective
+.org 0x0806353a
+    mov r1, r0
+    mov r0, r4
+    bl GetAbilityBySpeciesOld
+    mov r2, r0
+    b 0x8063564
+
+//AI_TypeCalc
+.org 0x80477d0
+   lsl r2,r2,#0x10
+   lsr r2,r2,#0x10
+
+//GetTypeEffectivenessPoints
+.org 0x819000e
+    //位置不够了，先暂时这样读取，后续再修改。
+    ldrb r0, [r0, #0x18]
+
+//GetWinningMove
+.org 0x8194040
+    ldrh r0, [r0, #0] //种族
+    mov r1, r5 //随机数
+    mov r5, r0
+    bl GetRandomAbility
+    mov r2, r0
+    mov r1, r5
+    b 0x8194074
+
+//TryGenerateBattlePikeWildMon
+.org 0x81A7C8A
+    bl Random
+    mov r1, r0
+    ldrh r0, [r4, #0]
+    bl GetRandomAbilityBit
+    b 0x81a7ca8
+
+//GenerateBattlePyramidWildMon
+.org 0x81a9d5a
+    mov r4, r1 //种族
+    bl Random
+    mov r1, r0
+    mov r0, r4
+    bl GetRandomAbilityBit
+    mov r1, r0
+    ldr r4, =0x2024744 //gEnemyParty
+    b 0x81a9d78
+    .pool
+
+//Cmd_pickup
+.org 0x8055c52
+   mov r1, r0
+   mov r0, r5
+   bl GetAbilityBySpeciesOld
+   b 0x8055c76
+
+//设置特性
+.org (0x806ae34+46*4)
+.word 0x806b338
+//读取特性
+.org (0x806a708+46*4)
+.word 0x806aaa8
+//CreateShedinja
+.org 0x813e484
+    cmp r4, #0x4e
 .close

@@ -104,6 +104,24 @@ __aeabi_idiv:
 	bx r3
 	.size __aeabi_idiv, . - __aeabi_idiv
 
+    .syntax unified
+    .global __aeabi_idivmod
+    .thumb_func
+    .type __aeabi_idivmod,function
+__aeabi_idivmod:
+	ldr r3, =(0x082e7650|1)
+	bx r3
+	.size __aeabi_idivmod, . - __aeabi_idivmod
+
+    .syntax unified
+    .global __aeabi_uidivmod
+    .thumb_func
+    .type __aeabi_uidivmod,function
+__aeabi_uidivmod:
+	ldr r3, =(__umodsi3__)
+	bx r3
+	.size __aeabi_uidivmod, . - __aeabi_uidivmod
+
 
     .syntax unified
     .global memcpy
