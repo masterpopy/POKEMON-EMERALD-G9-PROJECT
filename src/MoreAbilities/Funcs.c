@@ -8,7 +8,7 @@ void BtlController_EmitPrintString(u8 bufferId, u16 stringID);
 void BtlController_EmitPrintSelectionString(u8 bufferId, u16 stringID);
 void longcall battle_buffer_reset(u8 bufferId, u8 *data, u16 size);
 extern u8 bbp_for_banks[0x100];
-extern const struct move_info const move_table[];
+
 struct string_inf
 {
 	u8 cmdID;
