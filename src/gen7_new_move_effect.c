@@ -281,7 +281,7 @@ bool clanging_scales_stat(void)
 }
 
 
-bool check_ability_with_mold(u8 bank, u8 ability) {
+bool check_ability_with_mold(u8 bank, u16 ability) {
 	return (has_ability_effect(bank, 1) && gBankAbilities[bank] == ability);
 }
 
